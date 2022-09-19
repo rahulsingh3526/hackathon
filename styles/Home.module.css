@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .footer {
@@ -74,7 +75,7 @@
 }
 
 .card {
-  margin: 1rem;
+  margin: 1.5rem;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -83,6 +84,7 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+  cursor: pointer;
 }
 
 .card:hover,
@@ -103,10 +105,68 @@
   line-height: 1.5;
 }
 
+.form{
+  margin: 1rem;
+}
+
+.form input{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  
+}
+
+
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;
 }
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  margin-bottom:2 rem;
+}
+
+.img{
+  max-width: 10px;
+  max-height: 10px;
+}
+
+
+.navbar{
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    max-height: 8vh;
+    position:fixed;
+    max-height: 8vh;
+    padding: 0 2rem;
+    width:100%;
+    margin-bottom: 2rem;
+  }
+  
+  .list{
+  
+    display: flex;
+    list-style: none;
+    align-items:center;
+    margin-right: auto;
+    align-items: center;
+    
+   
+  }
+  
+  .list li{
+    margin:10px;
+    padding:10px;
+  }
 
 @media (max-width: 600px) {
   .grid {
