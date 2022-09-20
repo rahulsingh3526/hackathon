@@ -7,7 +7,15 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Layout({children}) {
   return (
-    <div className={styles.layout}>
+    <div className={styles.layout}   style ={{ backgroundImage: `url(${img.src})`,
+    width: '100%',
+    height: '100%',
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+    }}>
+
+    
+
     <nav className={styles.navbar}>
       <Image  src={img} alt="Alt" width ="100" height = "75"/>
       <ul className={styles.list}>

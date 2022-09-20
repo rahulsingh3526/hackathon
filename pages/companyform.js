@@ -1,16 +1,24 @@
 import React from 'react'
 import styles from "../styles/Home.module.css"
+import {useState} from "react"
+import {Web3Storage} from "web3.storage"
+// import {create} from "ipfs-http-client"
+
+// const client= create({url:retrieveFiles}) 
+
 
 export default function companyform() {
     const [formData, setFormData] = React.useState(
         {
-            firstName: "", 
-            lastName: "", 
-            email: "", 
+            companyName: "", 
+            jobPosition: "", 
+            address: "", 
+            salary:""
         }
     )
 
     function handleChange(event) {
+        event.preventDefault()
         console.log(event)
         const {name, value, type, checked} = event.target
         setFormData(prevFormData => {
@@ -21,6 +29,30 @@ export default function companyform() {
         })
     }
 
+
+    const [files, setFiles] = useState([])
+    const [cid, setCid]=useState(0)
+  
+    const client= new Web3Storage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDlGM2IwRjEyNUUxNkNCQjE4YTE0YjZhRTc4QjZiODRiOEZFNjhBY2IiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjI3MjA3MzYyNTUsIm5hbWUiOiJSIn0.L8Tm6jSJMYUw_HTmo_YFzWN5FklXZnUiKpENIgEch0U" });
+     
+    async function storeFiles(e){
+        e.preventDefault()
+        const cid = await client.put([files]);
+          console.log("Stored files with cid:", cid);
+          setCid(cid)
+       }
+      
+      async function retrieveFiles (e) {
+        e.preventDefault()
+      const client = new Web3Storage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDlGM2IwRjEyNUUxNkNCQjE4YTE0YjZhRTc4QjZiODRiOEZFNjhBY2IiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjI3MjA3MzYyNTUsIm5hbWUiOiJSIn0.L8Tm6jSJMYUw_HTmo_YFzWN5FklXZnUiKpENIgEch0U" })
+     
+        const res = await client.endpoint.protocol
+       let files =  `${res}//${cid}.ipfs.w3s.link/ss.png`
+       console.log(files) 
+       
+ }
+
+
   return (
 
     <div className={styles.main}>
@@ -29,32 +61,38 @@ export default function companyform() {
     <form className={styles.form}>
     <input
         type="text"
-        placeholder="First Name"
+        placeholder="Company Name"
         onChange={handleChange}
-        name="firstName"
-        value={formData.firstName}
+        name="companyName"
+        value={formData.companyName}
     />
     <input
         type="text"
-        placeholder="Last Name"
+        placeholder="Job Position"
         onChange={handleChange}
-        name="lastName"
-        value={formData.lastName}
+        name="jobPosition"
+        value={formData.jobPosition}
     />
     <input
-        type="email"
-        placeholder="Email"
+        type="text"
+        placeholder="Wallet Address"
         onChange={handleChange}
-        name="email"
-        value={formData.email}
+        name="address"
+        value={formData.address}
       />
 
-      
+        <input
+                type="text"
+                placeholder="Salary in $MATIC"
+                onChange={handleChange}
+                name="salary"
+                value={formData.salary}
+            />
+    
+
+            <button>submit</button>
 
    </form>
-
-
-
  </div>
 </div>
       
@@ -62,3 +100,8 @@ export default function companyform() {
    
   
 }
+
+//company name
+//job id
+//desc
+//type
